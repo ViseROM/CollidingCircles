@@ -23,5 +23,5 @@ Author: Vachia Thoj
 
 —— Code was originally written and executed using the Eclipse IDE ——
 
-—— There is an executable JAR called "CollidingCircles.jar" that run will "end product" of the code ——
+—— There is an executable JAR called "CollidingCircles.jar" that will run the "end product" of the code ——
 
