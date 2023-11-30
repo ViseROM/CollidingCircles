@@ -37,6 +37,9 @@ public class GamePanel extends JPanel implements Runnable
 	//To manage different states
 	private StateManager stateManager;
 	
+	/**
+	 * Constructor
+	 */
 	public GamePanel()
 	{
 		super();
@@ -65,44 +68,41 @@ public class GamePanel extends JPanel implements Runnable
 	public void run()
 	{
 		running = true;
+		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+		g = (Graphics2D) image.getGraphics();
+		
+		//Add anti-aliasing
+		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         
-        image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
-        g = (Graphics2D) image.getGraphics();
-        
-        //Add anti-aliasing
-        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-        
-        long start;
-        long elapsed;
-        long wait;
-        
-        //Events to do while thread is running
-        while(running == true)
-        {
-        	start = System.nanoTime();
-        	
-            update();
-            draw();
-            drawToScreen();
-            
-            //******* (START) Frame counting *******
-            
-            elapsed = (System.nanoTime() - start);
-            wait = TARGET_TIME - (elapsed / 1000000);
-            
-            if(wait <= 0)
-            {
-            	wait = 5;
-            }
-            
-            try{
-                Thread.sleep(wait);
-            }catch(Exception e){
-                e.printStackTrace();
-            }
-            //******* (END) Frame counting *******
-        }
+		long start;
+		long elapsed;
+		long wait;
+		
+		//Events to do while thread is running
+		while(running == true)
+		{
+			start = System.nanoTime();
+			
+			update();
+			draw();
+			drawToScreen();
+			
+			//******* (START) Frame counting *******		
+			elapsed = (System.nanoTime() - start);
+			wait = TARGET_TIME - (elapsed / 1000000);
+			if(wait <= 0)
+			{
+				wait = 5;
+			}
+			
+			try{
+				Thread.sleep(wait);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			//******* (END) Frame counting *******
+		}
 	}
 	
 	/**
