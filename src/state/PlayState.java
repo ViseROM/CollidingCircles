@@ -174,31 +174,31 @@ public class PlayState extends State
 	 * @param angle (double) the angle between two Particles
 	 * @return returns a rotated y position
 	 */
-    private double rotateY(double dx, double dy, double angle)
-    {
-        double rotatedVelocity = dx * Math.sin(angle) + dy * Math.cos(angle);
-        return rotatedVelocity;
-    }
+	private double rotateY(double dx, double dy, double angle)
+	{
+		double rotatedVelocity = dx * Math.sin(angle) + dy * Math.cos(angle);
+		return rotatedVelocity;
+	}
 	
     /**
      * Method that updates the PlayState
      */
-    public void update()
-    {
-    	//Update particles
-    	for(int i = 0; i < particles.size(); i++)
-    	{
-    		particles.get(i).update();
-    	}
-    	
-    	//Loop to see if Particles have collided
-    	for(int i = 0; i < particles.size(); i++)
-    	{
-    		Particle p1 = particles.get(i);
-    		for(int j = 0; j < particles.size(); j++)
-    		{
-    			if(i == j)
-    			{
+	public void update()
+	{
+		//Update particles
+		for(int i = 0; i < particles.size(); i++)
+		{
+			particles.get(i).update();
+		}
+		
+		//Loop to see if Particles have collided
+		for(int i = 0; i < particles.size(); i++)
+		{
+			Particle p1 = particles.get(i);
+			for(int j = 0; j < particles.size(); j++)
+			{
+				if(i == j)
+				{
 					continue;
 				}
 				
@@ -212,7 +212,6 @@ public class PlayState extends State
 					
 					//resolve collision for p1 and p2
 					resolveCollision(p1, p2);
-					
 					break;
 				}
     		}
