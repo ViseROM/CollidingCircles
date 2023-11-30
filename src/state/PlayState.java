@@ -82,9 +82,9 @@ public class PlayState extends State
 	 * @return (integer) returns a randomly generated number
 	 */
 	private double generateNumber(int max, int min)
-    {
-        return ((Math.random() * max) + min);
-    }
+	{
+		return ((Math.random() * max) + min);
+	}
 	
 	/**
 	 * Method that calculates and determines what happens next to the Particles
@@ -93,47 +93,47 @@ public class PlayState extends State
 	 * @param otherParticle (Particle) another Particle object
 	 */
 	private void resolveCollision(Particle particle, Particle otherParticle)
-    {
+	{
 		//Difference in x and y velocity of the two Particles
-        double xVelocityDiff = particle.getDx() - otherParticle.getDx();
-        double yVelocityDiff = particle.getDy() - otherParticle.getDy();
-        
-        //x and y distance between the two Particles
-        double xDist = otherParticle.getX() - particle.getX();
-        double yDist = otherParticle.getY() - particle.getY();
-        
-        //Prevent accidental overlap of particles
-        if(xVelocityDiff * xDist + yVelocityDiff * yDist >= 0)
-        {
-            //Grab angle between the two colliding particles
-            double angle = -Math.atan2(otherParticle.getY() - particle.getY(), otherParticle.getX() - particle.getX());
-            
-            //Get mass of particles
-            double m1 = particle.getMass();
-            double m2 = otherParticle.getMass();
-            
-            //Calculate x and y coordinate rotation of Particles
-            double u1X = rotateX(particle.getDx(), particle.getDy(), angle);
-            double u1Y = rotateY(particle.getDx(), particle.getDy(), angle);
-            double u2X = rotateX(otherParticle.getDx(), otherParticle.getDy(), angle);
-            double u2Y = rotateY(otherParticle.getDx(), otherParticle.getDy(), angle);
-            
-            double v1X = u1X * (m1 - m2) / (m1 + m2) + u2X * 2 * m2 / (m1 + m2);
-            double v1Y = u1Y;
-            double v2X = u2X * (m1 - m2) / (m1 + m2) + u1X * 2 * m2 / (m1 + m2);
-            double v2Y = u2Y;
-            
-            double vparticleFinalx = rotateX(v1X, v1Y, -angle);
-            double vparticleFinaly = rotateY(v1X, v1Y, -angle);
-            double vOtherParticleFinalx = rotateX(v2X, v2Y, -angle);
-            double vOtherParticleFinaly = rotateY(v2X, v2Y, -angle);
-            
-            particle.setDx(vparticleFinalx);
-            particle.setDy(vparticleFinaly);
-            otherParticle.setDx(vOtherParticleFinalx);
-            otherParticle.setDy(vOtherParticleFinaly);
-        }
-    }
+		double xVelocityDiff = particle.getDx() - otherParticle.getDx();
+		double yVelocityDiff = particle.getDy() - otherParticle.getDy();
+		
+		//x and y distance between the two Particles
+		double xDist = otherParticle.getX() - particle.getX();
+		double yDist = otherParticle.getY() - particle.getY();
+		
+		//Prevent accidental overlap of particles
+		if(xVelocityDiff * xDist + yVelocityDiff * yDist >= 0)
+		{
+			//Grab angle between the two colliding particles
+			double angle = -Math.atan2(otherParticle.getY() - particle.getY(), otherParticle.getX() - particle.getX());
+			
+			//Get mass of particles
+			double m1 = particle.getMass();
+			double m2 = otherParticle.getMass();
+			
+			//Calculate x and y coordinate rotation of Particles
+			double u1X = rotateX(particle.getDx(), particle.getDy(), angle);
+			double u1Y = rotateY(particle.getDx(), particle.getDy(), angle);
+			double u2X = rotateX(otherParticle.getDx(), otherParticle.getDy(), angle);
+			double u2Y = rotateY(otherParticle.getDx(), otherParticle.getDy(), angle);
+			
+			double v1X = u1X * (m1 - m2) / (m1 + m2) + u2X * 2 * m2 / (m1 + m2);
+			double v1Y = u1Y;
+			double v2X = u2X * (m1 - m2) / (m1 + m2) + u1X * 2 * m2 / (m1 + m2);
+			double v2Y = u2Y;
+			
+			double vparticleFinalx = rotateX(v1X, v1Y, -angle);
+			double vparticleFinaly = rotateY(v1X, v1Y, -angle);
+			double vOtherParticleFinalx = rotateX(v2X, v2Y, -angle);
+			double vOtherParticleFinaly = rotateY(v2X, v2Y, -angle);
+			
+			particle.setDx(vparticleFinalx);
+			particle.setDy(vparticleFinaly);
+			otherParticle.setDx(vOtherParticleFinalx);
+			otherParticle.setDy(vOtherParticleFinaly);
+		}
+	}
 	
 	/**
 	 * Method that determines if two Particles have collided
@@ -146,6 +146,7 @@ public class PlayState extends State
 		double dx = p1.getX() - p2.getX();
 		double dy = p1.getY() - p2.getY();
 		double distance = Math.sqrt((dx * dx) + (dy * dy));
+		
 		if(distance < p1.getRadius() + p2.getRadius())
 		{
 			return true;
