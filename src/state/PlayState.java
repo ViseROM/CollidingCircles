@@ -162,11 +162,11 @@ public class PlayState extends State
 	 * @return returns a rotated x position
 	 */
 	private double rotateX(double dx, double dy, double angle)
-    {
-        double rotatedVelocity = dx * Math.cos(angle) - dy * Math.sin(angle);
-        return rotatedVelocity;
-    }
-    
+	{
+		double rotatedVelocity = dx * Math.cos(angle) - dy * Math.sin(angle);
+		return rotatedVelocity;
+	}
+	
 	/**
 	 * Method that "rotates" the y position of a Particle
 	 * @param dx (double) change in x position of a Particle
@@ -183,22 +183,22 @@ public class PlayState extends State
     /**
      * Method that updates the PlayState
      */
-	public void update()
-	{
-		//Update particles
-		for(int i = 0; i < particles.size(); i++)
-		{
-			particles.get(i).update();
-		}
-		
-		//Loop to see if Particles have collided
-		for(int i = 0; i < particles.size(); i++)
-		{
-			Particle p1 = particles.get(i);
-			for(int j = 0; j < particles.size(); j++)
-			{
-				if(i == j)
-				{
+    public void update()
+    {
+    	//Update particles
+    	for(int i = 0; i < particles.size(); i++)
+    	{
+    		particles.get(i).update();
+    	}
+    	
+    	//Loop to see if Particles have collided
+    	for(int i = 0; i < particles.size(); i++)
+    	{
+    		Particle p1 = particles.get(i);
+    		for(int j = 0; j < particles.size(); j++)
+    		{
+    			if(i == j)
+    			{
 					continue;
 				}
 				
@@ -215,9 +215,9 @@ public class PlayState extends State
 					
 					break;
 				}
-			}
-		}
-	}
+    		}
+    	}
+    }
 	
 	/**
 	 * Method that draws the PlayState
